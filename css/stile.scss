@@ -1,0 +1,473 @@
+/* GUIA:
+RESETEO
+FOOTER EN EL BORDE INFERIOR (CON FLEX / CON GRID)
+ESTILO DE TODOS LOS BOTONES
+HEADER CON FLEX
+NAV CON FLEX
+HERO CON GRID
+CONTENEDOR DE TARJETAS RESPONSIVE CON GRID
+TARJETAS CON FLEX
+TARJETA CRECE DE TAMAÑO CON HOVER
+FLEX PARA QUE EL TITULO SIEMPRE ESTE ARRIBA Y EL BOTON ABAJO
+UL CON FLEX
+
+*/
+@import 'logo';
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+/* RESETEO */
+* {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	border: none;
+	outline: none;
+	color: inherit;
+	list-style: none;
+	font-family: "Poppins";
+}
+/* FOOTER SIEMPRE EN EL BORDE INFERIOR */
+/* -----------CON FLEX------------ */
+
+/* body {
+	min-height: 100vh;
+	height: 100%;
+	display: flex;
+		flex-flow: column nowrap;
+		justify-content: space-between;
+}
+
+main {
+	flex: 1;
+} */
+
+/* -----------CON GRID------------ */
+body {
+	/* ESTAS MEDIDAS SON OBLIGATORIAS PARA QUE EL SITIO MIDA COMO MINIMO EL ALTO DE LA PANTALLA */
+	min-height: 100vh;
+	height: 100%;
+	display: grid;
+	/* ARMA TRES FILAS, "AUTO" SIGNIFICA QUE EL CONTENEDOR SE ADAPTA A SU CONTENIDO, "FR" SIGINIFICA QUE LLENA EL RESTO DEL ESPACIO */
+	grid-template-rows: auto 1fr auto;
+	
+}
+
+/* ESTILO DE TODOS LOS BOTONES */
+.btn {
+	display: inline-block;
+	padding: 0.6em 1.7em;
+	border-radius: 0.3em;
+	font-weight: 800;
+	text-transform: uppercase;
+	letter-spacing: 0.09em;
+}
+
+/* HEADER CON FLEX */
+header {
+	/* EL HEADER QUEDA ARRIBA */
+	position: sticky;
+	top: 0;
+	background: linear-gradient(45deg, #fbfdcb 0%, #de9fb2 47%, #be5ae0 95%);
+	z-index: 1;
+	/* SEPARAR LOGO Y MENU */
+	display: flex;
+	justify-content: space-between;
+	//align-items: baseline;
+	/* ESTILO */
+	padding: 1.5em 2em;
+	box-shadow: 0 0 20px 0 black;
+}
+
+
+
+/* NAV CON FLEX */
+nav {
+	display: flex;
+	/* EN VEZ DE DAR PADDING A LOS BOTONES, AL SER SOLO PALABRAS USAMOS "GAP" QUE AGREGA ESPACIO ENTRE LOS ITEMS, DE ESTA FORMA NO HAY QUE DARLE UN ANCHO AL NAV/UL NI PADDING/MARGIN A LOS ENLACES */
+	gap: 1em;
+}
+
+/*ESTE ES EL ICONO DEL MENU HAMBURGUEZA*/
+
+
+  
+
+
+/* HERO CENTRADO CON GRID */
+.hero {
+	background: url("/img/fondo123.jpg")
+	no-repeat 50% 60% / cover;
+	height: 80vh;
+	display: grid;
+	place-content: center; 
+
+	
+	/* ESTO CENTRA LOS HIJOS DEL PADRE VERTICAL Y HORIZONTALMENTE */
+}
+
+/* ESTILO DE LA CAJA DE TEXTO */
+.hero-txt {
+	text-align: center;
+	max-width: 50vw;
+	color: white;
+}
+
+.hero-txt h1 > span {
+	margin-top: 0.7em;
+	display: block; /* FILA NUEVA */
+	/* REDUCIR TIPOGRAFIA Y NEGRITA */
+	font-size: 0.7em;
+	font-weight: 400;
+	line-height: 1.8em;
+}
+
+/* COLOR DEL BOTÓN DEL HERO */
+.hero .btn {
+	margin-top: 1.3em;
+	background: rgb(12, 11, 11);
+}
+
+.productos {
+	padding: 3em;
+}
+
+.title-c {
+	text-align: center;
+	margin-bottom: 1.5em;
+	text-decoration: underline #db74bb 0.2em;
+	/* SEPARA EL SUBRAYADO DEL TEXTO */
+	text-underline-offset: 0.3em;
+}
+
+/* CONTENEDOR DE TARJETAS RESPONSIVE CON GRID */
+.contenedor {
+	display: grid;
+	/* 	-------------AL USAR GRID, LA ULTIMA FILA NO QUEDA CENTRADA-------------
+	GRID-TEMPLATE-COLUMNS: Esta propiedad de GRID crea las columnas de la grilla.
+	-REPEAT-> (cantidad de columnas, misma medida) -> repeat(2,200px) crea 2 columnas/filas de 200px.
+	-AUTO-FIT-> GRID CREA TANTAS COLUMNAS COMO ITEMS.
+	--> AUTO-FIT PUEDE CAMBIARSE POR AUTO-FILL QUE SIGUE CREANDO COLUMNAS AUNQUE YA USO TODOS LOS ITEMS.
+	-MINMAX-> CADA COLUMNA TIENE COMO MÍNIMO XXX y COMO MÁXIMO UNA FRACCIÓN*/
+
+	/* 	repeat (numero de veces que repite, medida) */
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 2em;
+}
+
+/* TARJETAS CON FLEX*/
+.card {
+	display: flex;
+	flex-flow: column;
+	border-radius: 0.3em;
+	overflow: hidden; /*PARA QUE LA FOTO TENGA EL BORDER-RADIUS ARRIBA*/
+	box-shadow: 0 10px 25px -10px black;
+
+	transition: 300ms ease-in-out; /* TRANSICIÓN PARA EL EFECTO DEL :HOVER */
+	/* 	 */
+}
+
+/* TARJETA CRECE DE TAMAÑO CON HOVER */
+.card:hover {
+	transform: scale(1.05);
+	box-shadow: 0 15px 35px -10px black;
+}
+
+.card-img {
+	width: 100%;
+	flex-basis: 200px; /* FLEX SE USA PARA DARLE UN ALTO MINIMO DE 200PX A LA IMAGEN */
+}
+
+/* ID PARA DAR LAS IMAGENES DE CADA TARJETA */
+#producto-01 {
+	background: url("/img/producto1.jpg")
+	no-repeat 50% 60% / cover;
+
+}
+#producto-02 {
+	background: url("/img/producto2.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+#producto-03 {
+	background: url("/img/producto3.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-04 {
+	background: url("/img/producto4.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+
+
+
+#producto-05 {
+	background: url("/img/producto5.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+
+#producto-06 {
+	background: url("/img/producto6.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+#producto-07 {
+	background: url("/img/producto7.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+#producto-08 {
+	background: url("/img/producto8.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+#producto-09 {
+	background: url("/img/producto9.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+#producto-10 {
+	background: url("/img/producto10.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+#producto-11 {
+	background: url("/img/producto11.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+#producto-12 {
+	background: url("/img/producto12.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+#producto-12 {
+	background: url("/img/producto12.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-13 {
+	background: url("/img/producto13.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-14 {
+	background: url("/img/producto14.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-15 {
+	background: url("/img/producto15.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-16 {
+	background: url("/img/producto16.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-17 {
+	background: url("/img/producto17.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-18 {
+	background: url("/img/producto18.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-19 {
+	background: url("/img/producto19.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-20 {
+	background: url("/img/producto20.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-21 {
+	background: url("/img/producto21.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-22 {
+	background: url("/img/producto22.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-23 {
+	background: url("/img/producto23.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-24 {
+	background: url("/img/producto24.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-25 {
+	background: url("/img/producto25.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-26 {
+	background: url("/img/producto26.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-27 {
+	background: url("/img/producto27.jpg")
+		no-repeat 50% 60% / cover;
+}
+#producto-28 {
+	background: url("/img/producto28.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+
+
+/*ESTA PARTE ES DE EQUIPO*/
+#ventas {
+	background: url("/img/ventas.jpg")
+		no-repeat 50% 60% / cover;
+}
+#logistica {
+	background: url("/img/logistica.jpg")
+		no-repeat 50% 60% / cover;
+}
+#marquerting {
+	background: url("/img/marketing.jpg")
+		no-repeat 50% 60% / cover;
+}
+#desarrolldor {
+	background: url("/img/desarrollador.jpg")
+		no-repeat 50% 60% / cover;
+}
+
+.card-txt {
+	/* FLEX PARA QUE EL TITULO SIEMPRE ESTE ARRIBA Y EL BOTON ABAJO */
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	align-items: center;
+	gap: 1em;
+	padding: 1.5em;
+	text-align: center;
+}
+
+.card-txt .btn {
+	font-size: 0.8em;
+	background: linear-gradient(45deg, #fbfdcb 0%, #de9fb2 47%, #be5ae0 95%);
+}
+
+/* FOOTER CON FLEX */
+footer {
+	display: flex;
+	flex-flow: row;
+	justify-content: space-between;
+	align-items: baseline;
+	/* ESTILO */
+	padding: 0.5em 2em;
+	background: url("/img/fondo123.jpg")
+	
+		no-repeat bottom/cover;
+}
+
+
+footer .redes {
+	text-align: right;
+	color: white;
+}
+
+footer .redes h3 {
+	margin-bottom: 0.7vh;
+}
+/* UL CON FLEX */
+footer .redes ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: flex-end;
+	gap: 2em;
+}
+
+
+#contact input[type="text"], #contact input[type="email"], #contact input[type="tel"], #contact input[type="url"], #contact textarea, #contact button[type="submit"] { font:400 12px/16px "Open Sans", Helvetica, Arial, sans-serif; }
+
+#contact {
+	background:#F9F9F9;
+	padding:25px;
+	margin:50px 0;
+}
+
+#contact h3 {
+	color: #F96;
+	display: block;
+	font-size: 30px;
+	font-weight: 400;
+}
+
+#contact h4 {
+	margin:5px 0 15px;
+	display:block;
+	font-size:13px;
+}
+fieldset {
+	border: medium none !important;
+	margin: 0 0 10px;
+	min-width: 100%;
+	padding: 0;
+	width: 100%;
+}
+
+#contact input[type="text"], #contact input[type="email"], #contact input[type="tel"], #contact input[type="url"], #contact textarea {
+	width:100%;
+	border:1px solid #CCC;
+	background:#FFF;
+	margin:0 0 5px;
+	padding:10px;
+}
+
+#contact input[type="text"]:hover, #contact input[type="email"]:hover, #contact input[type="tel"]:hover, #contact input[type="url"]:hover, #contact textarea:hover {
+	-webkit-transition:border-color 0.3s ease-in-out;
+	-moz-transition:border-color 0.3s ease-in-out;
+	transition:border-color 0.3s ease-in-out;
+	border:1px solid #AAA;
+}
+
+#contact textarea {
+	height:100px;
+	max-width:100%;
+  resize:none;
+}
+
+#contact button[type="submit"] {
+	cursor:pointer;
+	width:100%;
+	border:none;
+	background:#0CF;
+	color:#FFF;
+	margin:0 0 5px;
+	padding:10px;
+	font-size:15px;
+}
+
+#contact button[type="submit"]:hover {
+	background:#09C;
+	-webkit-transition:background 0.3s ease-in-out;
+	-moz-transition:background 0.3s ease-in-out;
+	transition:background-color 0.3s ease-in-out;
+}
+
+/*ACA JUGAMOS CON EL RESPONSIVE PARA DEJAR TODO LISTO LOS TAMAÑOS RESPONSIVOS PARA CADA DISPOSITIVO*/
+
+@media only screen and (max-width: 500px) {
+	footer {
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+	}
+
+		footer .redes ul {
+		display: flex;
+		justify-content: center;
+	}
+
+	header {
+		
+		display: flex;
+		flex-flow: column;
+		align-items: center;
+	}
+
+		header .nava a {
+		display: flex;
+		justify-content: center;
+		position: relative;
+	}
+
+}
